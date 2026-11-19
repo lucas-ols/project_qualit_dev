@@ -3,7 +3,7 @@ package VillageNoel;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Batiment {
+public abstract class Batiment implements MagieNoel{
     protected double superficie;
     protected int capacite_accueil;
     protected String degre_proprete;
@@ -15,6 +15,15 @@ public abstract class Batiment {
         this.degre_proprete = "bon";
         this.personnages_presents = new ArrayList<>();
     }
+    
+    @Override
+	public int getTotalMagieNoel() {
+    	int somme = 0;
+    	for (Personnage p : personnages_presents) {
+            somme += p.getMagieNoel();
+        }
+    	return somme;
+	}
     
     public void afficherInfos() {
         System.out.println("=== INFORMATIONS DU BÂTIMENT ===");

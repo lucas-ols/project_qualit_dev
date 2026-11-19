@@ -8,7 +8,21 @@ public class Ateliers extends Batiment{
 
 	@Override
 	public Boolean accepter(Personnage p) {
-		return null;
+		if(p.estHumanoide) {
+			if(p.getClass().getSimpleName() == "Lutins" || p.getClass().getSimpleName() == "FeesDeNoel") {
+				System.out.println("bienvenu a l'atelier petit " + p.getClass().getSimpleName());
+				return true;
+			}else {
+				System.out.println("l'acces vous est interdis");
+				return false;
+			}
+		}else {
+			System.out.println("seule les humanoide peuvent rentrée");
+			return false;
+		}
+		
+		
+	}
 		
 	}
 

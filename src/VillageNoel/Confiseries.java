@@ -8,7 +8,7 @@ public class Confiseries extends Batiment{
 
 	@Override
 	public Boolean accepter(Personnage p) {
-		return null;
+		return true;
 		
 	}
 
