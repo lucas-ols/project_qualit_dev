@@ -1,22 +1,20 @@
 package VillageNoel;
 
-public class Personnage {
+public abstract class Personnage {
 
 	private String nom ; 
-	private String sexe ; 
+	private Sexe sexe ; 
 	private int age ; 
 	private int faim = 0; 
 	private Boolean seRepose = false; 
 	private int magie_noel;
 	private Batiment batiment_actuel;
-	private Boolean humanoide;
 	
-	public Personnage(String nom ,String sexe ,int age ,int magie_noel,Batiment lieu_initial, Boolean humanoide) {
+	public Personnage(String nom ,Sexe sexe ,int age ,int magie_noel,Batiment lieu_initial) {
 		this.nom = nom;
 		this.sexe = sexe;
 		this.age = age;
 		this.magie_noel = magie_noel;
-		this.humanoide = humanoide;
 		
 		this.batiment_actuel = lieu_initial;
         if (lieu_initial != null) {
@@ -24,11 +22,20 @@ public class Personnage {
         }
 	}
 	
+	//Méthodes abstraites:
+    protected abstract String getSon();
+    public abstract boolean estHumanoide();
+
+    // Emettre un son
+    public void emettreSon() {
+        System.out.println(this.nom + " : " + this.getSon());
+    }
+
 	public String getNom() {
 		return this.nom;
 	}
 	
-	public String getSexe() {
+	public Sexe getSexe() {
 		return this.sexe;
 	}
 	
@@ -38,10 +45,6 @@ public class Personnage {
 	
 	public int getMagieNoel() {
 		return this.magie_noel;
-	}
-	
-	public void emettreSon() {
-		
 	}
 	
 	public void deplacer(Batiment nouveauBatiment) {

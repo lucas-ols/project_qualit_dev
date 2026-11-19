@@ -1,0 +1,251 @@
+@startuml VillagePereNoel
+title Simulation de village du Père Noël - Diagramme de classes
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+' ===================== ENUMERATION ET CLASSE NOURRITURE =====================
+enum Sexe {
+  MASCULIN
+  FEMININ
+}
+
+enum Proprete {
+  MAUVAIS
+  CORRECT
+  BON
+}
+
+class Nouriture {
+  -nom : String
+  -valeurNutritive : int
+  --
+  +getNom() : String
+  +getValeurNutritive() : int
+}
+
+enum Farce {
+  LAIT_MAGIQUE
+  SOUPE_AU_BAS
+  PAPIER_TOILETTE_ROULE
+  YEUX_REMUANTS
+  TYROLIENNE
+}
+
+enum TypeCreature {
+  RENNE
+  LYCANTHROPE
+  BONHOMME_DE_NEIGE
+  ESPRIT_DU_NORD
+}
+
+' ===================== INTERFACES =====================
+interface Divertir {
+  +divertir() : void
+}
+
+interface Travailleur {
+  +travailler() : void
+}
+
+interface EtreFantastique {
+  +seComporterEnFantastique() : void
+}
+
+' ===================== PERSONNAGES =====================
+abstract class Personnage {
+  -nom : String
+  -sexe : Sexe
+  -age : int
+  -faim : int
+  -seRepose : Boolean
+  -magie_noel : int
+  -batiment_actuel : Batiment
+  --
+  # {abstract} getSon() : String
+  +{abstract} estHumanoide() : boolean
+  +emettreSon() : void
+  +getNom() : String
+  +getSexe() : Sexe
+  +getAge() : int
+  +getMagieNoel() : int
+  +deplacer(nouveauBatiment : Batiment) : void
+  +etatRepos() : void
+  +magie() : void
+  +manger(plat : Nouriture) : void
+}
+
+class Humanoide extends Personnage {
+  #getSon() : String
+  +estHumanoide() : boolean
+}
+
+class Creature extends Personnage {
+  #getSon() : String
+  +estHumanoide() : boolean
+}
+
+class Lutins extends Humanoide implements Divertir, Travailleur {
+  +divertir() : void
+  +travailler() : void
+  #getSon() : String
+}
+
+class LutinFarceur extends Lutins {
+  -dureeTransformation : int
+  +faireFarce() : Farce
+  +redevenirLutin() : Lutins
+}
+
+class ElfesPostiers extends Humanoide implements Travailleur {
+  +travailler() : void
+  #getSon() : String
+}
+
+class FeesDeNoel extends Humanoide implements Travailleur {
+  +travailler() : void
+  #getSon() : String
+}
+
+class EnfantsVisiteurs extends Humanoide implements Divertir {
+  +divertir() : void
+  #getSon() : String
+}
+
+class Rennes extends Creature
+
+class Lycanthropes extends Creature {
+  #getSon() : String
+}
+
+class BonshommesDeNeige extends Creature {
+  #getSon() : String
+}
+
+class EspritsDuNord extends Creature
+
+' ===================== BATIMENTS =====================
+abstract class Batiment {
+  #superficie : double
+  #capacite_accueil : int
+  #degre_proprete : String
+  #personnages_presents : List<Personnage>
+  --
+  +afficherInfos() : void
+  +peutAccueillir(p : Personnage) : boolean
+  +ajouterPersonnage(p : Personnage) : void
+  +retirerPersonnage(p : Personnage) : void
+  +entretien() : void
+}
+
+abstract class BatimentSansAccueil extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+abstract class BatimentOuvert extends Batiment
+
+class MaisonPereNoel extends BatimentSansAccueil {
+  -{static} instance : MaisonPereNoel
+  +{static} getInstance() : MaisonPereNoel
+}
+
+class TourHorloge extends BatimentSansAccueil {
+  -{static} instance : TourHorloge
+  +{static} getInstance() : TourHorloge
+  +getMagieTotale() : int
+  +donnerHeure() : String
+}
+
+class ChaletDortoir extends Batiment {
+  -sexeAccepte : Sexe
+  +accepte(p : Personnage) : boolean
+}
+
+class Enclos extends Batiment {
+  -ouvert : boolean
+  -typeCreature : TypeCreature
+  +accepte(p : Personnage) : boolean
+}
+
+class Confiserie extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+class AtelierFabrication extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+class BureauPoste extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+class EcoleMagie extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+class BoutiqueJouets extends Batiment {
+  +accepte(p : Personnage) : boolean
+}
+
+class AireDeJeux extends BatimentOuvert {
+  +accepte(p : Personnage) : boolean
+  +frequenceEntretien : int
+}
+
+class Reserve extends BatimentSansAccueil {
+  -stock : Map<Nouriture, Integer>
+  -capaciteMaxParNourriture : int
+  +ajouterNourriture(n : Nouriture, q : int) : void
+  +retirerNourriture(n : Nouriture, q : int) : boolean
+  +estEntretenable() : boolean
+}
+
+' ===================== PERE NOEL & VILLAGE =====================
+class PereNoel {
+  -{static} instance : PereNoel
+  -actionsRestantes : int
+  --
+  +{static} getInstance() : PereNoel
+  +examiner(b : Batiment) : void
+  +demanderEntretien(b : Batiment) : void
+  +transferer(p : Personnage, src : Batiment, dest : Batiment) : boolean
+  +afficherMenu() : void
+  +jouerTour() : void
+}
+
+class VillagePereNoel {
+  -superficieMax : double
+  -capaciteAccueilMax : int
+  -batiments : List<Batiment>
+  -pereNoel : PereNoel
+  -seuilVictoire : int
+  -seuilDefaite : int
+  --
+  +afficherNombrePersonnages() : void
+  +afficherPersonnagesTousBatiments() : void
+  +{static} main(args : String[]) : void
+  -modifierEtatPersonnagesAleatoire() : void
+  -modifierPropreteAleatoire() : void
+  -augmenterStocksAleatoire() : void
+  -emettreSonsAleatoire() : void
+  -genererRencontreFunebre() : void
+  -lancerFarces() : void
+  -verifierVictoireDefaite() : void
+}
+
+' ===================== RELATIONS =====================
+Batiment "0..1" -- "0..*" Personnage : personnages présents / bâtiment actuel
+Personnage ..> Nouriture : mange
+Personnage --> Sexe : sexe
+LutinFarceur ..> Farce : fait >
+Reserve ..> Nouriture : stocke
+Confiserie ..> Reserve : se fournit >
+Enclos ..> TypeCreature
+ChaletDortoir ..> Sexe
+
+VillagePereNoel "1" *-- "1" PereNoel
+VillagePereNoel "1" *-- "1..*" Batiment : bâtiments actuels
+PereNoel ..> Batiment : examine / entretient
+PereNoel ..> Personnage : transfère
+TourHorloge ..> VillagePereNoel : comptabilise la magie
+
+@enduml

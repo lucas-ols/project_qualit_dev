@@ -2,7 +2,7 @@ package VillageNoel;
 
 public class Lutins extends Humanoide implements Travailleur,Divertir {
 
-	public Lutins(String nom, String sexe, int age, int magie_noel,Batiment lieu_initial) {
+	public Lutins(String nom, Sexe sexe, int age, int magie_noel,Batiment lieu_initial) {
 		super(nom, sexe, age, magie_noel, lieu_initial);
 	}
 
@@ -14,6 +14,11 @@ public class Lutins extends Humanoide implements Travailleur,Divertir {
 	@Override
 	public void travailler() {
 		
+	}
+
+	@Override
+	protected String getSon() {
+		return "HIHIHIHI";
 	}
 
 }
