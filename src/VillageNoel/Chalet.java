@@ -1,5 +1,5 @@
 package VillageNoel;
 
-public class chalet {
+public class Chalet {
 
 }

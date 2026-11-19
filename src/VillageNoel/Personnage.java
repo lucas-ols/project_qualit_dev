@@ -7,20 +7,20 @@ public class Personnage {
 	private int age ; 
 	private int faim = 0; 
 	private Boolean seRepose = false; 
-	private int magieNoel;
-	private Batiment batimentActuel;
+	private int magie_noel;
+	private Batiment batiment_actuel;
 	private Boolean humanoide;
 	
-	public Personnage(String nom ,String sexe ,int age ,int magieNoel,Batiment lieuInitial, Boolean humanoide) {
+	public Personnage(String nom ,String sexe ,int age ,int magie_noel,Batiment lieu_initial, Boolean humanoide) {
 		this.nom = nom;
 		this.sexe = sexe;
 		this.age = age;
-		this.magieNoel = magieNoel;
+		this.magie_noel = magie_noel;
 		this.humanoide = humanoide;
 		
-		this.batimentActuel = lieuInitial;
-        if (lieuInitial != null) {
-            lieuInitial.ajouterPersonnage(this);
+		this.batiment_actuel = lieu_initial;
+        if (lieu_initial != null) {
+        	lieu_initial.ajouterPersonnage(this);
         }
 	}
 	
@@ -37,7 +37,7 @@ public class Personnage {
 	}
 	
 	public int getMagieNoel() {
-		return this.magieNoel;
+		return this.magie_noel;
 	}
 	
 	public void emettreSon() {
@@ -52,11 +52,11 @@ public class Personnage {
 
         if (nouveauBatiment.peutAccueillir(this)) {
             
-            if (this.batimentActuel != null) {
-                this.batimentActuel.retirerPersonnage(this);
+            if (this.batiment_actuel != null) {
+                this.batiment_actuel.retirerPersonnage(this);
             }
 
-            this.batimentActuel = nouveauBatiment;
+            this.batiment_actuel = nouveauBatiment;
 
             nouveauBatiment.ajouterPersonnage(this);
 
@@ -70,7 +70,7 @@ public class Personnage {
 		
 	} 
 	
-	public void magie () {
+	public void magie() {
 		
 	} 
 	
