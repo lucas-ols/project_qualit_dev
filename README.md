@@ -1,4 +1,4 @@
 CONVENTION
-  -class = PascalCase.
-  -methode = camelCase.
-  -variable = snake_case.
+  - class = PascalCase.
+  - methode = camelCase.
+  - variable = snake_case.
