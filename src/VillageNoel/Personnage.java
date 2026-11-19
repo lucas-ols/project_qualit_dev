@@ -74,7 +74,7 @@ public class Personnage {
 		
 	} 
 	
-	public void manger(Nouriture plat) {
+	public void manger(Nourriture plat) {
         if (this.seRepose) {
             System.out.println(nom + " se repose et ne peut pas manger pour l'instant.");
             return;
