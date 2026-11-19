@@ -34,14 +34,15 @@ public abstract class Batiment {
         System.out.println("================================");
     }
 
+    public abstract Boolean accepter(Personnage p);
+    
     public boolean peutAccueillir(Personnage p) {
         if (personnages_presents.size() >= capacite_accueil) {
             System.out.println("Échec : Le bâtiment est complet !");
             return false;
         }else {
-        	
+        	return accepter(p);
         }
-        return true;
     }
 
     public void ajouterPersonnage(Personnage p) {
