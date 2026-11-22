@@ -1,10 +1,13 @@
 package VillageNoel;
 
-public class MaisonDuPereNoel extends Batiment{
+public final class MaisonDuPereNoel extends BatimentSansAccueil{
 	
-	private static final int capacite_accueil = 0;
+	private static final MaisonDuPereNoel MAISON = new MaisonDuPereNoel();
 	
-	public MaisonDuPereNoel(double superficie) {
-		super(superficie, capacite_accueil);
+	private MaisonDuPereNoel() {
+		super(560);
+	}
+	public static MaisonDuPereNoel getInstance() {
+		return MAISON;
 	}
 }

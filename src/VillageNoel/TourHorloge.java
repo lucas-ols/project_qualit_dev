@@ -1,9 +1,14 @@
 package VillageNoel;
-public class TourHorloge extends Batiment{
-	
-	private static final int capacite_accueil = 0;
 
-	public TourHorloge(double superficie) {
-		super(superficie, capacite_accueil);
+public final class TourHorloge extends BatimentSansAccueil{
+	
+	private static final TourHorloge TOUR = new TourHorloge();
+	
+	private TourHorloge() {
+		super(560);
+	}
+	public static TourHorloge getInstance() {
+		return TOUR;
 	}
 }
+

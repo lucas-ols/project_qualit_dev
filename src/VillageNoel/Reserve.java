@@ -5,4 +5,8 @@ public class Reserve extends Batiment{
 	public Reserve(double superficie) {
 		super(superficie, capacite_accueil);
 	}
+	@Override
+	public boolean accepte(Personnage p) {
+		return false;
+	}
 }
