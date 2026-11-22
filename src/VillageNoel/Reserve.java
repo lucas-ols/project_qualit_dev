@@ -1,7 +1,8 @@
 package VillageNoel;
 
 public class Reserve extends Batiment{
-	public Reserve(double superficie, int capacite_accueil) {
+	private static final int capacite_accueil = 0;
+	public Reserve(double superficie) {
 		super(superficie, capacite_accueil);
 	}
 }
