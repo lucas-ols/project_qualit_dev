@@ -62,4 +62,6 @@ public abstract class Batiment {
     		System.out.println("le batiment a ete entretenu");
     	}
     }
+
+	public abstract boolean accepte(Personnage p);
 }
