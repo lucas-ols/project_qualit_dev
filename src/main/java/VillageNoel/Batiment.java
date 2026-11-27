@@ -4,16 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Batiment implements MagieNoel{
-    protected double superficie;
-    protected int capacite_accueil;
-    protected String degre_proprete;
-    protected List<Personnage> personnages_presents;
+    
+    private double superficie;
+    private int capacite_accueil;
+    private String degre_proprete;
+    private Boolean interieur;
+    private List<Personnage> personnages_presents;
 
-    public Batiment(double superficie, int capacite_accueil) {
+    public Batiment(double superficie, int capacite_accueil, Boolean interieur) {
         this.superficie = superficie;
         this.capacite_accueil = capacite_accueil;
         this.degre_proprete = "bon";
+        this.interieur = interieur;
         this.personnages_presents = new ArrayList<>();
+    }
+
+    public double getSuperficie(){
+        return this.superficie;
+    }
+
+    public int getCapaciteAccueil(){
+        return this.capacite_accueil;
+    }
+
+    public String getDegreProprete(){
+        return this.degre_proprete;
+    }
+
+    public Boolean getInterieur(){
+        return this.interieur;
+    }
+
+    public List<Personnage> getPersonnagesPresents(){
+        return this.personnages_presents;
     }
     
     @Override
@@ -27,10 +50,11 @@ public abstract class Batiment implements MagieNoel{
     
     public void afficherInfos() {
         System.out.println("=== INFORMATIONS DU BÂTIMENT ===");
-        System.out.println("- Superficie : " + this.superficie + " m²");
-        System.out.println("- Capacité d'accueil : " + this.capacite_accueil + " personnes");
-        System.out.println("- Degré de propreté : " + this.degre_proprete);
-        System.out.println("- Nombre de personnages présents : " + this.personnages_presents.size());
+        System.out.println("- Superficie : " + this.getSuperficie() + " m²");
+        System.out.println("- Capacité d'accueil : " + this.getCapaciteAccueil() + " personnes");
+        System.out.println("- Degré de propreté : " + this.getDegreProprete());
+        System.out.println("- A l'interieur: " + this.getInterieur());
+        System.out.println("- Nombre de personnages présents : " + this.getPersonnagesPresents().size());
         
         System.out.println("- Personnages à l'intérieur :");
         if (this.personnages_presents.isEmpty()) {

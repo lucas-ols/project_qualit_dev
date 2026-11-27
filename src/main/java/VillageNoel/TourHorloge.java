@@ -7,11 +7,11 @@ public final class TourHorloge extends Batiment{
 	private static final TourHorloge TOUR = new TourHorloge();
 	
 	private TourHorloge() {
-		super(560, 0);
+		super(560, 0, true);
 	}
 
 	@Override
-	public boolean accepte(Personnage p) {
+	public Boolean accepter(Personnage p) {
 		return false;
 	}
 
@@ -23,7 +23,7 @@ public final class TourHorloge extends Batiment{
     	System.out.println(""
     			+ "Le total de magie de noel est de :" + somme);
 	}
-	
+
 	public static TourHorloge getInstance() {
 		return TOUR;
 	}

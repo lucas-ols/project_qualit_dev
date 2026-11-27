@@ -5,7 +5,7 @@ public final class MaisonDuPereNoel extends Batiment{
 	private static final MaisonDuPereNoel MAISON = new MaisonDuPereNoel();
 	
 	private MaisonDuPereNoel() {
-		super(560, 0);
+		super(560, 0,true);
 	}
 
 	@Override
