@@ -5,7 +5,7 @@ public class BureauxDePoste extends Batiment{
 		super(superficie, capacite_accueil);
 	}
 	@Override
-	public boolean accepte(Personnage p) {
+	public Boolean accepter(Personnage p) {
 		return true;
 	}
 }

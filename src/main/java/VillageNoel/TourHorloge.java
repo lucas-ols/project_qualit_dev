@@ -1,12 +1,29 @@
 package main.java.VillageNoel;
 
-public final class TourHorloge extends BatimentSansAccueil{
+import java.util.ArrayList;
+
+public final class TourHorloge extends Batiment{
 	
 	private static final TourHorloge TOUR = new TourHorloge();
 	
 	private TourHorloge() {
-		super(560);
+		super(560, 0);
 	}
+
+	@Override
+	public boolean accepte(Personnage p) {
+		return false;
+	}
+
+	public void totMagieNoel(ArrayList<Batiment> bat) {
+		int somme = 0;
+    	for (Batiment b : bat) {
+            somme += b.getTotalMagieNoel();
+        }
+    	System.out.println(""
+    			+ "Le total de magie de noel est de :" + somme);
+	}
+	
 	public static TourHorloge getInstance() {
 		return TOUR;
 	}
